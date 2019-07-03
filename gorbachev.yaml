@@ -1,2 +1,2 @@
-docker: docker.dragonfly.co.nz/hawaiian-texts:53f7214
+docker: docker.dragonfly.co.nz/hawaiian-texts:39309fd
 publish: te-wiki-o-te-reo
