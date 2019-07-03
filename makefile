@@ -1,14 +1,16 @@
-DOCKER_REGISTRY := rngwlf
+DOCKER_REGISTRY := docker.dragonfly.co.nz
 IMAGE_NAME := $(shell basename `git rev-parse --show-toplevel`)
 IMAGE := $(DOCKER_REGISTRY)/$(IMAGE_NAME)
-RUN ?= docker run $(DOCKER_ARGS) --rm -v $$(pwd)/..:/work -w /work/dictionary -u $(UID):$(GID) $(IMAGE)
+RUN ?= docker run $(DOCKER_ARGS) --rm -v $$(pwd):/work -w /work -u $(UID):$(GID) $(IMAGE)
 UID ?= $(shell id -u)
 GID ?= $(shell id -g)
 DOCKER_ARGS ?= 
 GIT_TAG ?= $(shell git log --oneline | head -n1 | awk '{print $$1}')
 LABEL_MAP ?= ../Example_Models/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29/labelmap.txt
+LOG_LEVEL ?= DEBUG
 
 crawl:
+	$(RUN) bash -c '(cd ulukau && scrapy crawl nupepa -o nupepa.json --loglevel $(LOG_LEVEL) 2>&1 | tee ulukau/nupepa.log)'
 
 JUPYTER_PASSWORD ?= jupyter
 JUPYTER_PORT ?= 8888
@@ -24,6 +26,9 @@ jupyter:
 		--NotebookApp.password=$(shell $(RUN) \
 			python3 -c \
 			"from IPython.lib import passwd; print(passwd('$(JUPYTER_PASSWORD)'))")
+
+clean:
+	rm -f ulukau/nupepa.json ulukau/nupepa.log
 
 .PHONY: docker
 docker:
