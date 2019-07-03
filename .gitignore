@@ -1,1 +1,7 @@
 .#**
+data/**
+models/**
+ulukau/nupepa.json
+ulukau/nupepa.log
+**/__pycache__
+**/.ipynb_checkpoints

@@ -10,7 +10,7 @@ LABEL_MAP ?= ../Example_Models/coco_ssd_mobilenet_v1_1.0_quant_2018_06_29/labelm
 LOG_LEVEL ?= DEBUG
 
 crawl:
-	$(RUN) bash -c '(cd ulukau && scrapy crawl nupepa -o nupepa.json --loglevel $(LOG_LEVEL) 2>&1 | tee ulukau/nupepa.log)'
+	$(RUN) bash -c '(cd ulukau && scrapy crawl nupepa -o nupepa.json --loglevel $(LOG_LEVEL) 2>&1 | tee nupepa.log)'
 
 JUPYTER_PASSWORD ?= jupyter
 JUPYTER_PORT ?= 8888
