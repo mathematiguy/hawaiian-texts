@@ -8,3 +8,8 @@ nltk==3.4
 scrapy-jsonschema==0.1.0
 scrapy==1.6.0
 spacy==2.1.4
+umap==0.1.1
+gensim==3.7.3
+scikit-learn==0.21.2
+bokeh==1.2.0
+pyLDAvis==2.1.2
