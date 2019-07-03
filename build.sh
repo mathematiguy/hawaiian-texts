@@ -1,7 +1,7 @@
 set -ex
 
-set RUN=''
-set LOG_LEVEL=INFO
+export RUN=''
+export LOG_LEVEL=INFO
 
 make crawl
 
